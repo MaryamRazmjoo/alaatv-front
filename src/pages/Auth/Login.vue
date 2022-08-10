@@ -5,13 +5,13 @@
       <q-card-section class="row bg-blue-8 text-white justify-between">
         <div class="row login-header-right-side justify-center items-center">
           <q-img class="login-alaa-logo"
-                 src="img/3a-logo.png"
-                 alt="3a-logo" />
+                 src="img/logo/logo-image.png"
+                 alt="alaa" />
           <p class="login-entry-title q-ml-md q-mb-none">ورود</p>
         </div>
         <q-avatar>
-          <img src="img/alaa-logo.png"
-               alt="logo">
+          <img src="img/logo/logo-image.png"
+               alt="alaa">
         </q-avatar>
       </q-card-section>
       <q-linear-progress v-if="loadingList"
