@@ -14,11 +14,6 @@
         />
         <q-resize-observer @resize="onHeaderResize"/>
       </template>
-      <template #left-drawer>
-        <div class="drawer-inside">
-          <side-menu-dashboard/>
-        </div>
-      </template>
       <template #content>
         <div ref="contentInside" class="content-inside">
           <q-dialog v-model="confirmDialogData.show" persistent>
@@ -43,7 +38,6 @@
 
 <script>
 import { ref } from 'vue'
-import SideMenuDashboard from 'components/Menu/SideMenu/SideMenu-dashboard'
 import { QuasarTemplateBuilder } from 'quasar-template-builder'
 import templateHeader from 'components/Template/templateHeader'
 import Router from 'src/router/Router'
@@ -61,12 +55,11 @@ export default {
         layoutHeaderReveal: false,
         layoutHeaderElevated: false,
         layoutHeaderBordered: false,
-        layoutLeftDrawer: true,
+        layoutLeftDrawer: false,
         layoutLeftDrawerVisible: false,
         layoutLeftDrawerOverlay: false,
         layoutLeftDrawerElevated: false,
         layoutLeftDrawerBordered: false,
-        layoutLeftDrawerWidth: 325,
         layoutPageContainer: true,
         layoutRightDrawer: false,
         layoutFooter: false,
@@ -107,16 +100,6 @@ export default {
     },
     resize (val) {
       this.$store.commit('AppLayout/updateWindowSize', val)
-      if (val.width > 1439) {
-        this.$store.commit('AppLayout/updateLayoutLeftDrawerWidth', 314)
-        this.$store.commit('AppLayout/updateLayoutLeftDrawerBehavior', 'desktop') && this.$store.commit('AppLayout/updateLayoutRightDrawerBehavior', 'desktop')
-      } else if (val.width > 599) {
-        this.$store.commit('AppLayout/updateLayoutLeftDrawerWidth', 280)
-        this.$store.commit('AppLayout/updateLayoutLeftDrawerBehavior', 'mobile') && this.$store.commit('AppLayout/updateLayoutRightDrawerBehavior', 'mobile')
-      } else {
-        this.$store.commit('AppLayout/updateLayoutLeftDrawerWidth', 242)
-        this.$store.commit('AppLayout/updateLayoutLeftDrawerBehavior', 'mobile') && this.$store.commit('AppLayout/updateLayoutRightDrawerBehavior', 'mobile')
-      }
     }
   }
 }

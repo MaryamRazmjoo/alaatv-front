@@ -1,19 +1,5 @@
 <template>
   <div
-    class="drawer-btn col-1">
-    <!--    :class="{'col-6': windowSize.x < 599}"-->
-    <!--  >-->
-    <q-btn
-      class="toolbar-button"
-      icon="isax:menu-1"
-      color="white"
-      text-color="accent"
-      dense
-      unelevated
-      @click="toggleLeftDrawer"
-    />
-  </div>
-  <div
     class="right-side col-5">
     <!--    :class="{'col-6': windowSize.x > 1439, 'col-12': windowSize.x < 599}"-->
     <!--  >-->
@@ -121,7 +107,6 @@ export default {
       'breadcrumbsVisibility',
       'breadcrumbs',
       'breadcrumbLoading',
-      'layoutLeftDrawerVisible',
       'windowSize'
     ])
   },
@@ -130,11 +115,7 @@ export default {
       'updateVisibilityBreadcrumb',
       'updateBreadcrumbs',
       'updateBreadcrumbLoading',
-      'updateLayoutLeftDrawerVisible'
     ]),
-    toggleLeftDrawer() {
-      this.updateLayoutLeftDrawerVisible(!this.layoutLeftDrawerVisible)
-    },
     hasRoute(route) {
       if (!route) {
         return
@@ -158,15 +139,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.drawer-btn {
-  //display: none;
-  @media screen and (max-width: 1439px) {
-    display: block;
-  }
-  @media screen and (max-width: 599px) {
-    margin-bottom: 10px;
-  }
-}
 
 .right-side {
   display: flex;
@@ -219,15 +191,7 @@ export default {
   }
 }
 
-.drawer-btn {
-  .q-btn {
-    flex-direction: row !important;
 
-    &.toolbar-button {
-      margin-left: 0 !important;
-    }
-  }
-}
 
 .q-btn {
   &.toolbar-button {
