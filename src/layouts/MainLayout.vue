@@ -44,7 +44,7 @@ import Router from 'src/router/Router'
 import KeepAliveComponents from 'assets/js/KeepAliveComponents'
 
 export default {
-  components: { Router, SideMenuDashboard, QuasarTemplateBuilder, templateHeader },
+  components: { Router, QuasarTemplateBuilder, templateHeader },
   data () {
     return {
       keepAliveComponents: KeepAliveComponents,
