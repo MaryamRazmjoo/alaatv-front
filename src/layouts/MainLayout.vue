@@ -2,9 +2,7 @@
   <div class="main-layout">
     <quasar-template-builder v-model:value="properties" @onResize="resize">
       <template #header>
-        <div class="header-inside row">
-          <template-header/>
-        </div>
+        <template-header/>
         <q-linear-progress
           v-if="$store.getters['loading/loading']"
           color="primary"
@@ -49,7 +47,7 @@ export default {
     return {
       keepAliveComponents: KeepAliveComponents,
       properties: {
-        layoutView: 'lHh Lpr lFf',
+        layoutView: 'hHh LpR fFf',
         layoutHeader: true,
         layoutHeaderVisible: true,
         layoutHeaderReveal: false,
@@ -109,12 +107,10 @@ export default {
 .main-layout {
   &:deep(.main-layout-header) {
     background-color: #ffffff;
+    background-color: #FFFFFF;
     display: flex;
-    .header-inside{
-      margin: auto;
-      max-width: 1360px;
-      width: 100%;
-    }
+    flex-direction: row;
+    padding: 16px 0;
   }
   &:deep(.main-layout-container) {
     background-color: #f1f1f1;
