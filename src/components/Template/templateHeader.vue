@@ -1,88 +1,84 @@
 <template>
-  <div
-    class="right-side col-5">
-    <!--    :class="{'col-6': windowSize.x > 1439, 'col-12': windowSize.x < 599}"-->
-    <!--  >-->
-    <div
-      v-if="breadcrumbsVisibility"
-    >
-      <q-skeleton
-        v-if="!breadcrumbs.path"
-        width="100px"
-        height="10px"
-      />
-      <q-breadcrumbs
-        v-else
-        class="breadcrumbs"
-        separator-color="dark"
-        gutter="sm"
-      >
-        <template v-slot:separator>
-          <q-icon name="isax:arrow-right-3 " />
-        </template>
-        <q-breadcrumbs-el
-          v-for="(breadcrumb, index) in breadcrumbs.path"
-          :key="index"
-        >
-          <q-skeleton
-            v-if="breadcrumb.loading"
-            width="100px"
-            height="10px"
-          />
-          <q-breadcrumbs-el
-            v-else
-            :icon=breadcrumb.icon
-            :label=breadcrumb.title
-            :to="getRoute(breadcrumb.route)"
-            class="q-breadcrumbs-el"
-          />
-        </q-breadcrumbs-el>
-      </q-breadcrumbs>
+  <div class="header-container">
+<!--    TODO => change bellow element's class name!-->
+   <div class="idn">
+     <div class="logo-header">
+       <q-img src="img/logo/logo-image.png"/>
+     </div>
 
+     <div class="header-tabs">
+       <q-btn-dropdown
+         class="header-button-group"
+         label="فیلم های پایه و کنکور آلاء"
+         color="transparent"
+         dropdown-icon="isax:arrow-down-1"
+         text-color="dark"
+         flat
+       >
+       </q-btn-dropdown>
+       <q-btn-dropdown
+         class="header-button-group"
+         label="همایش کنکوری آلاء"
+         color="transparent"
+         dropdown-icon="isax:arrow-down-1"
+         text-color="dark"
+         flat
+       >
+       </q-btn-dropdown>
+       <q-btn-dropdown
+         class="header-button-group"
+         label="متوسطه اول"
+         color="transparent"
+         dropdown-icon="isax:arrow-down-1"
+         text-color="dark"
+         flat
+       >
+       </q-btn-dropdown>
+       <q-btn
+         class="header-button-group"
+         label="المپیاد"
+         color="transparent"
+         text-color="dark"
+         flat
+       >
+       </q-btn>
+     </div>
+   </div>
+
+    <div class="header-user-actions">
+        <q-btn
+          class="header-button-group cart-button"
+          icon="isax:shopping-cart"
+          color="transparent"
+          text-color="dark"
+          flat
+        />
+        <q-btn
+          v-if="!isUserLogin"
+          class="header-button-group login-button"
+          label="ورود/ثبت نام"
+          color="primary"
+          text-color="accent"
+          unelevated
+        />
+      <q-btn-dropdown
+        class="header-button-group profile-button"
+        color="transparent"
+        icon="https://cdn.quasar.dev/img/avatar1.jpg"
+        dropdown-icon="isax:arrow-down-1"
+        text-color="dark"
+        flat
+      >
+        <template v-slot:label>
+          <div class="row items-center no-wrap">
+            <q-icon left name="map" />
+            <div class="text-center">
+              Custom<br>Content
+            </div>
+          </div>
+        </template>
+      </q-btn-dropdown>
     </div>
-  </div>
-  <div
-    class="left-side col-6">
-    <!--    :class="{'col-6': windowSize.x < 599, 'col-6': windowSize.x > 1439}">-->
-    <q-btn-dropdown
-      class="toolbar-button"
-      content-class="profile-menu"
-      icon="isax:notification"
-      dropdown-icon="false"
-      color="white"
-      text-color="accent"
-      dir="ltr"
-      dense
-      unelevated
-    >
-      <q-badge color="red"
-               rounded
-               floating>3</q-badge>
-    </q-btn-dropdown>
-    <q-btn-dropdown
-      class="toolbar-button"
-      content-class="profile-menu"
-      icon="isax:user"
-      dropdown-icon="false"
-      color="white"
-      text-color="accent"
-      dir="ltr"
-      dense
-      unelevated
-    >
-      <q-list unelevated>
-        <router-link   :to=" {name: 'User.Dashboard.purchases', params: {id: user.id}}">
-          <q-item v-close-popup>
-            <q-item-section side>
-              <q-icon name="mdi-cloud-download-outline" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>فیلم ها و جزوه های من</q-item-label>
-            </q-item-section>
-          </q-item>
-        </router-link>
-      </q-list>
-    </q-btn-dropdown>
   </div>
 </template>
 
@@ -103,115 +99,68 @@ export default {
     console.log(this.user)
   },
   computed: {
-    ...mapGetters('AppLayout', [
-      'breadcrumbsVisibility',
-      'breadcrumbs',
-      'breadcrumbLoading',
-      'windowSize'
-    ])
+    isUserLogin () {
+      return this.$store.getters['Auth/isUserLogin']
+    }
   },
   methods: {
-    ...mapMutations('AppLayout', [
-      'updateVisibilityBreadcrumb',
-      'updateBreadcrumbs',
-      'updateBreadcrumbLoading',
-    ]),
-    hasRoute(route) {
-      if (!route) {
-        return
-      }
-      return !!(route.name || route.path)
-    },
-    getRoute(route) {
-      if (!this.hasRoute(route)) {
-        return { name: null }
-      }
-      if (route.name) {
-        return { name: route.name }
-      } else if (route.path) {
-        return { path: route.path }
-      } else {
-        return { name: null }
-      }
-    }
+
   }
 }
 </script>
 
-<style lang="scss" scoped>
-
-.right-side {
+<style lang="scss" scoped >
+.header-container {
   display: flex;
-  align-items: center;
-  @media screen and (max-width: 1439px) {
-    margin-left: 78px;
-  }
-  @media screen and (max-width: 1023px) {
-    margin-left: 42px;
-  }
-  @media screen and (max-width: 599px) {
-    margin-left: 0;
-  }
+  height: 72px;
+  width: 100%;
+  justify-content: space-between;
+  .idn {
+    display: flex;
+    .logo-header {
+      display: flex;
+      align-items: center;
+      width: 40px;
+      margin-right: 40px;
+    }
 
-  .breadcrumbs {
-    &:deep(> *) {
-      font-style: normal;
-      font-weight: bold;
-      font-size: 16px;
-      line-height: 31px;
-      text-align: right;
-      color: #23263B;
-
-      div:first-child {
-        font-size: 18px;
-      }
+    .header-tabs {
+      display: flex;
     }
   }
-}
 
-.left-side {
-  display: flex;
-  justify-content: flex-end;
-  @media screen and (max-width: 1439px) {
-    position: absolute;
-    right: 30px;
-  }
-  @media screen and (max-width: 599px) {
-    right: 16px;
-    margin-bottom: 10px;
-  }
-}
-</style>
-<style lang="scss">
-.breadcrumbs {
-  .q-breadcrumbs__separator {
-    .q-icon {
-      font-size: 22px;
+  .header-button-group {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: -0.03em;
+    margin-right: 24px;
+
+    &:deep(.q-icon) {
+      font-size: 10px;
+    }
+
+    &:deep(.q-btn-dropdown__arrow) {
+      margin-left: 6px;
     }
   }
-}
 
+  .header-user-actions {
+    display: flex;
+   .cart-button {
+     display: flex;
+     margin-right: 48px;
+     &:deep(.q-icon) {
+       font-size: 21px;
+     }
+   }
 
-
-.q-btn {
-  &.toolbar-button {
-    margin-left: 12px;
-    height: 48px;
-    width: 48px;
-    box-shadow: -2px -4px 10px rgba(255, 255, 255, 0.6), 2px 4px 10px rgba(112, 108, 162, 0.05);
-    border-radius: 16px;
-  }
-}
-
-.left-side {
-  .q-btn {
-    &.toolbar-button {
-      .q-btn__content {
-        .q-btn-dropdown__arrow {
-          display: none !important;
-        }
-      }
+    .login-button {
+      margin: auto 0;
+      height: 40px;
     }
   }
+
 }
 </style>

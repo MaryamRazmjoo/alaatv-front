@@ -108,36 +108,11 @@ export default {
 <style lang="scss" scoped>
 .main-layout {
   &:deep(.main-layout-header) {
-    background-color: #f1f1f1;
+    background-color: #ffffff;
     display: flex;
-    flex-direction: row;
-    padding: 60px 100px 24px 76px;
-    @media screen and (max-width: 1919px) {
-      padding: 30px 30px 24px 0;
-    }
-    @media screen and (max-width: 1439px) {
-      padding: 20px 30px 18px 30px !important;
-    }
-    @media screen and (max-width: 1023px) {
-      padding: 20px 30px 20px 20px;
-    }
-    @media screen and (max-width: 599px) {
-      padding: 24px 16px 14px 16px !important;
-      :nth-child(1) {
-        order: 1;
-      }
-      :nth-child(2) {
-        order: 3;
-      }
-      :nth-child(3) {
-        order: 2;
-      }
-    }
-    .right-side {
-      @media screen and (max-width: 1439px) {
-      }
-    }
     .header-inside{
+      margin: auto;
+      max-width: 1360px;
       width: 100%;
     }
   }
