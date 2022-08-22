@@ -30,12 +30,13 @@ module.exports = configure(function (ctx) {
       'axios',
       'appConfig',
       'middleware',
-      'breadcrumbs'
+      'breadcrumbs',
+      'page-builder'
     ],
 
     // https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
     css: [
-      'app.scss',
+      'app.scss'
       // 'flatIcon.css',
       // '../../public/fonts/Iconsax/style.css'
       // 'src/assets/scss/app.scss',
@@ -190,7 +191,6 @@ module.exports = configure(function (ctx) {
         capacitor: {
           iosStatusBarPadding: true, // add the dynamic top padding on iOS mobile devices
 
-
           // Quasar handles app exit on mobile phone back button.
           // backButtonExit: true/false/'*'/['/login', '/home', '/my-page'],
 
@@ -199,6 +199,7 @@ module.exports = configure(function (ctx) {
           backButton: true
         }
       },
+      cssAddon: true,
 
       iconSet: 'material-icons', // Quasar icon set
       lang: 'fa', // Quasar language pack (en-US)
@@ -316,10 +317,10 @@ module.exports = configure(function (ctx) {
       hideSplashscreen: false, // disables auto-hiding the Splashscreen by Quasar CLI
 
       // (Optional!)
-      capacitorCliPreparationParams: [ 'sync', ctx.targetName ],
+      capacitorCliPreparationParams: ['sync', ctx.targetName]
     },
     bin: {
-      linuxAndroidStudio: "/snap/android-studio/current/android-studio/bin/studio.sh"
+      linuxAndroidStudio: '/snap/android-studio/current/android-studio/bin/studio.sh'
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli/developing-electron-apps/configuring-electron

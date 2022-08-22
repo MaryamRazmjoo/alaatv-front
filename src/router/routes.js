@@ -76,21 +76,14 @@ const routes = [
               middlewares: [auth]
             },
             component: () => import('pages/User/Dashboard/MyPurchases')
-          }
-        ]
-      },
-      {
-        path: 'User',
-        name: 'User.Dashboard',
-        component: () => import('layouts/bareLayout.vue'),
-        children: [
+          },
           {
-            name: 'User.Dashboard.purchases',
-            path: ':id/dashboard/MyPurchases',
+            name: 'User.Dashboard.favorites',
+            path: ':id/dashboard/MyFavorites',
             meta: {
               middlewares: [auth]
             },
-            component: () => import('pages/User/Dashboard/MyPurchases')
+            component: () => import('pages/User/Dashboard/MyFavorites')
           }
         ]
       },
@@ -175,24 +168,11 @@ const routes = [
       },
       {
         path: 'profile',
-        name: 'profile',
+        name: 'Profile',
         component: () => import('pages/Profile/Profile.vue'),
         meta: {
           middlewares: [auth]
-        },
-        children: [
-          {
-            name: 'MyProducts',
-            path: 'my-products',
-            component: () => import('pages/Profile/MyProducts.vue')
-          },
-          {
-            name: 'MyOrders',
-            path: 'my-orders',
-            component: () => import('pages/Profile/MyOrders.vue')
-          }
-          //  TODO: complete routes : ["Wallet", "Bookmarks", "LeitnerBox", "MyChannels", "MyComments", "Ticket"]
-        ]
+        }
       }
     ]
     // meta: {
